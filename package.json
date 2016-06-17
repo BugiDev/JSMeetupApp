@@ -1,0 +1,19 @@
+{
+  "name": "JSMeetupApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "events": "^1.1.0",
+    "flux": "^2.1.1",
+    "keymirror": "^0.1.1",
+    "react": "^15.1.0",
+    "react-native": "^0.27.2",
+    "react-native-code-push": "^1.12.2-beta",
+    "react-native-device-info": "^0.9.3",
+    "striptags": "^2.1.1",
+    "superagent": "^2.0.0"
+  }
+}
