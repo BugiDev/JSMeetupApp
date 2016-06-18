@@ -13,7 +13,8 @@ import {
     TouchableOpacity,
     Linking,
     Animated,
-    LayoutAnimation
+    LayoutAnimation,
+    InteractionManager
 } from 'react-native';
 import striptags from 'striptags';
 import styles from './GroupView.style';
@@ -71,6 +72,14 @@ export default class GroupView extends Component {
     }
 
     expandOrganizer() {
+
+        // InteractionManager.runAfterInteractions(() => {
+        //     for (let i = 0; i < 10000; i++){
+        //         let x = 10000000/ 672386 + 23986 * 1309686 - 129857 + 2386760;
+        //         console.log(x);
+        //     }
+        // });
+
         if(this.state.heightAnim._value > 100){
             Animated.timing(          // Uses easing functions
                 this.state.heightAnim,    // The value to drive
