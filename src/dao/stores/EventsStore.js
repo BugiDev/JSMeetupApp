@@ -4,12 +4,12 @@
 
 import Store from './Store';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import {GroupAction} from '../../constants/AppConstants';
+import {EventsAction} from '../../constants/AppConstants';
 
 let appDispatcher = new AppDispatcher();
 let instance = null;
 
-export default class GroupStore extends Store {
+export default class EventsStore extends Store {
 
     constructor() {
         super();
@@ -17,19 +17,19 @@ export default class GroupStore extends Store {
         if (!instance) {
             instance = this;
 
-            instance._group = null;
+            instance._allEvents = null;
 
             instance.dispatchToken = appDispatcher.register(payload => {
                 let action = payload.action;
                 switch (action.actionName) {
-                    case GroupAction.SAVE_GROUP:
+                    case EventsAction.SAVE_EVENTS:
                     {
-                        instance._saveGroup(action.data);
+                        instance._saveEvents(action.data);
                         break;
                     }
-                    case GroupAction.LOAD_GROUP:
+                    case EventsAction.LOAD_EVENTS:
                     {
-                        instance._saveGroup(action.data);
+                        instance._saveEvents(action.data);
                         break;
                     }
                     default:
@@ -38,19 +38,19 @@ export default class GroupStore extends Store {
                 instance.emitChange();
             });
 
-            instance.getGroup = instance.getGroup.bind(instance);
-            instance._saveGroup = instance._saveGroup.bind(instance);
+            instance.getEvents = instance.getEvents.bind(instance);
+            instance._saveEvents = instance._saveEvents.bind(instance);
         }
 
         return instance;
     }
 
-    getGroup() {
-        return this._group;
+    getEvents() {
+        return this._allEvents;
     }
 
-    _saveGroup(data) {
-        this._group = data.body;
+    _saveEvents(data) {
+        this._allEvents = data.body;
     }
 
 }

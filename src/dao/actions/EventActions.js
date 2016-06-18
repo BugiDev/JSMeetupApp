@@ -3,31 +3,37 @@
  */
 
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import {GroupAction, GroupUrl} from '../../constants/AppConstants';
+import {EventAction, EventUrl} from '../../constants/AppConstants';
 import request from 'superagent';
 
 let appDispatcher = new AppDispatcher();
 
 export default {
-    loadGroup: function() {
+    loadEvent: function(eventId) {
         request
-            .get(GroupUrl)
+            .get(EventUrl(eventId))
             .end((err, data) => {
                 appDispatcher.handleViewAction({
-                    actionName: GroupAction.LOAD_GROUP,
+                    actionName: EventAction.LOAD_EVENT,
                     data: data
                 });
             });
     },
-    getGroup: function(item) {
+    getEvent: function(item) {
         appDispatcher.handleViewAction({
-            actionName: GroupAction.GET_GROUP,
+            actionName: EventAction.GET_EVENT,
             data: item
         });
     },
-    saveGroup: function(item) {
+    saveEvent: function(item) {
         appDispatcher.handleViewAction({
-            actionName: GroupAction.SAVE_GROUP,
+            actionName: EventAction.SAVE_EVENT,
+            data: item
+        });
+    },
+    deleteEvent: function(item) {
+        appDispatcher.handleViewAction({
+            actionName: EventAction.DELETE_EVENT,
             data: item
         });
     }
